@@ -5,7 +5,7 @@ const logger = require('../../config/logger');
 exports.transcribe = async (req, res, next) => {
   try {
     const response = await openaiApi.transcribe(req);
-    if (response.status !== 200) {
+    if (response.status && response.status !== 200) {
       const err = response.data.error.message;
       throw new Error(err);
     }
