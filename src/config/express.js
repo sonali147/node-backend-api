@@ -23,6 +23,7 @@ app.use(morgan(logs));
 // parse body params and attache them to req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(`${__dirname}/../../public`));
 
 // gzip compression
 app.use(compress());
