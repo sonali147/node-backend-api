@@ -4,7 +4,7 @@ const multer = require('multer');
 const controller = require('../../controllers/openai-api.controller');
 const logger = require('../../../config/logger');
 
-const allowedMimeTypes = ['audio/mpeg', 'audio/wav', 'audio/webm', 'audio/mp4', 'audio/m4a', 'audio/x-m4a'];
+const allowedMimeTypes = ['mpeg', 'wav', 'webm', 'mp4', 'm4a', 'x-m4a'];
 // Configuration for Multer
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -21,7 +21,8 @@ const multerStorage = multer.diskStorage({
 // Multer Filter
 const multerFilter = (req, file, cb) => {
   logger.info(`file mimetype ${file.mimetype}`);
-  if (allowedMimeTypes.includes(file.mimetype)) {
+  const ext = file.mimetype.split('/')[1];
+  if (allowedMimeTypes.includes(ext)) {
     cb(null, true);
   } else {
     cb(new Error('Not a Mp3 File!!'), false);
