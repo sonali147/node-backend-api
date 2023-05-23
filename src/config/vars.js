@@ -16,10 +16,10 @@ module.exports = {
   // },
   logs: process.env.NODE_ENV === 'production' ? 'combined' : 'dev',
   emailConfig: {
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    username: process.env.EMAIL_USERNAME,
-    password: process.env.EMAIL_PASSWORD,
+    host: process.env.EMAIL_HOST || '',
+    port: process.env.EMAIL_PORT || '',
+    username: process.env.EMAIL_USERNAME || '',
+    password: process.env.EMAIL_PASSWORD || '',
   },
   openaiApiKey: process.env.OPENAI_API_KEY,
 };
