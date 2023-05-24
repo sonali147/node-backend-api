@@ -1,17 +1,25 @@
-version: "2"
+version: "3.9"
 services:
-  boilerplate-api:
-    build: .
-    environment:
-      - MONGO_URI=mongodb://mongodb:27017/express-rest-es2017-boilerplate
-    volumes:
-      - .:/app
+  nginx:
+    build: ../Nginx
+    image: 'openai-nginx'
     ports:
-      - "3000:3000"
+      - 8888:80
     depends_on:
-      - mongodb
-
-  mongodb:
-    image: mongo
+      - web
+      - api
+    restart: always
+  web:
+    build: ../OpenAI-Audio-Summarizer
+    image: 'openai-frontend'
     ports:
-      - "27017:27017"
+      - 5173:5173
+    depends_on:
+      - api
+    env_file:
+      - ../OpenAI-Audio-Summarizer/.env.docker
+  api:
+    build: .
+    image: 'openai-backend'
+    ports:
+      - 3000:3000
