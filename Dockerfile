@@ -6,4 +6,4 @@ COPY package.json yarn.lock ./
 RUN yarn --pure-lockfile
 COPY . /app
 
-CMD ["yarn", "docker:start"]
+CMD ["yarn", "dev"]
