@@ -4,6 +4,10 @@ package-lock.json
 # Environment variables
 .env
 
+# vs code
+.vscode
+*.code-workspace
+
 # Logs
 logs
 *.log
